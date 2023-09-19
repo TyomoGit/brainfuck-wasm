@@ -1,0 +1,31 @@
+html {
+    background-color:aqua;
+}
+
+h1 {
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    padding: 0px 10px;
+}
+
+#codeField {
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px 0px;
+    background-color: white;
+}
+
+#outputField {
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px 0px;
+    background-color: white;
+}
+
+#output {
+    min-height: 40px;
+}

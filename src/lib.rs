@@ -2,7 +2,7 @@ use std::io::{Read, Write};
 use web_sys::window;
 
 use wasm_bindgen::prelude::*;
-use bf_rs::{interpreter, token};
+use bf_rs::{interpreter::Interpreter, token};
 
 #[wasm_bindgen(js_namespace = window)]
 extern  "C"{
@@ -11,11 +11,10 @@ extern  "C"{
 
 #[wasm_bindgen]
 pub struct InterpreterContext {
-    interpreter: interpreter::Interpreter,
+    interpreter: Interpreter,
 }
 
 struct WebReader{}
-struct WebWriter{}
 
 impl Read for WebReader {
     fn read(&mut self, buf: &mut [u8]) -> std::io::Result<usize> {
@@ -27,6 +26,7 @@ impl Read for WebReader {
             .read(buf)
     }
 }
+struct WebWriter{}
 
 impl Write for WebWriter {
     fn write(&mut self, buf: &[u8]) -> std::io::Result<usize> {
@@ -37,8 +37,6 @@ impl Write for WebWriter {
 
         let inner_conetnt = element.inner_html();
         element.set_inner_html(&(inner_conetnt + &String::from_utf8(buf.to_vec()).unwrap()));
-        // element.set_inner_html(&String::from_utf8(buf.to_vec()).unwrap());
-            
 
         Ok(buf.len())
     }
@@ -50,15 +48,11 @@ impl Write for WebWriter {
 
 #[wasm_bindgen]
 impl InterpreterContext {
-    pub fn step(
-        &mut self,
-    ){
+    pub fn step(&mut self){
         self.interpreter.step(&mut WebReader{}, &mut WebWriter{});
     }
 
-    pub fn run(
-        &mut self,
-    ){
+    pub fn run(&mut self){
         self.interpreter.run(&mut WebReader{}, &mut WebWriter{});
     }
 }
@@ -66,6 +60,6 @@ impl InterpreterContext {
 #[wasm_bindgen]
 pub fn new_interpreter(string: &str) -> InterpreterContext {
     let tokens = token::tokenize(string);
-    let interpreter = interpreter::Interpreter::new(tokens);
+    let interpreter = Interpreter::new(tokens);
     InterpreterContext { interpreter }
 }

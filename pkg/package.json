@@ -1,0 +1,14 @@
+{
+  "name": "brainfuck-wasm",
+  "version": "0.1.0",
+  "files": [
+    "brainfuck_wasm_bg.wasm",
+    "brainfuck_wasm.js",
+    "brainfuck_wasm.d.ts"
+  ],
+  "module": "brainfuck_wasm.js",
+  "types": "brainfuck_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

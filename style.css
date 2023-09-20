@@ -32,5 +32,28 @@ h1 {
 
 textarea {
     width: 90%;
-    height: 100px;
+    height: 15rem;
+}
+
+#keys button {
+    touch-action: manipulation;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    margin: 5px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#runButton {
+    touch-action: manipulation;
+    border: 2px solid skyblue;
+    border-radius: 10px;
+    color: white;
+    background-color: blue;
+    padding: 5px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
 }

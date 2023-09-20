@@ -59,7 +59,8 @@ impl InterpreterContext {
 pub fn new_interpreter(string: &str) -> InterpreterContext {
     let tokens = token::tokenize(string).unwrap_or_else(|e| {
         let writer = &mut WebWriter{};
-        writer.write_all(e.to_string().as_bytes()).unwrap();
+        let output = format!("<strong><span style='color: red;'>Error: {}</span></strong>", e);
+        writer.write_all(output.as_bytes()).unwrap();
         vec![]
     });
     let interpreter = Interpreter::new(tokens);

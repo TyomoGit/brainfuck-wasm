@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bf-rs = { git = "https://github.com/TyomoGit/bf-like-interpreter-rs.git", version = "0.1.2" }
+brainfuck-interpreter = { git = "https://github.com/TyomoGit/brainfuck-interpreter-rs.git", version = "0.3.1" }
 wasm-bindgen = "0.2.87"
 web-sys = { version = "0.3.64", features = ["Window", "Document", "Element"] }
 

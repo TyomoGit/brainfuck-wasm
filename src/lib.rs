@@ -1,8 +1,8 @@
-use std::io::{Read, Write};
+use std::{io::{Read, Write}, vec};
 use web_sys::window;
 
 use wasm_bindgen::prelude::*;
-use bf_rs::{interpreter::Interpreter, token};
+use brainfuck_interpreter::{interpreter::Interpreter, token};
 
 #[wasm_bindgen(js_namespace = window)]
 extern  "C"{
@@ -57,7 +57,11 @@ impl InterpreterContext {
 
 #[wasm_bindgen]
 pub fn new_interpreter(string: &str) -> InterpreterContext {
-    let tokens = token::tokenize(string);
+    let tokens = token::tokenize(string).unwrap_or_else(|e| {
+        let writer = &mut WebWriter{};
+        writer.write_all(e.to_string().as_bytes()).unwrap();
+        vec![]
+    });
     let interpreter = Interpreter::new(tokens);
     InterpreterContext { interpreter }
 }

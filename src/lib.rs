@@ -19,9 +19,7 @@ struct WebReader{}
 impl Read for WebReader {
     fn read(&mut self, buf: &mut [u8]) -> std::io::Result<usize> {
         window().unwrap()
-            .prompt()
-            .unwrap()
-            .unwrap()
+            .prompt().unwrap().unwrap()
             .as_bytes()
             .read(buf)
     }

@@ -7,6 +7,7 @@ use brainfuck_interpreter::{interpreter::Interpreter, token};
 #[wasm_bindgen(js_namespace = window)]
 extern "C"{
     fn prompt(message: &str) -> String;
+    fn alert(message: &str);
 }
 
 #[wasm_bindgen(js_namespace = console)]
@@ -55,7 +56,10 @@ impl Write for WebWriter {
         }
     
         let output = &String::from_utf8(buf.to_vec()).unwrap_or_else(|_e| {
-            if self.buffer.len() >= 4 { self.buffer.clear();}
+            if self.buffer.len() >= 4 {
+                self.buffer.clear();
+                alert("Error: Invalid UTF-8 sequence");
+            }
 
             self.buffer.append(&mut buf.to_vec());
             String::new()

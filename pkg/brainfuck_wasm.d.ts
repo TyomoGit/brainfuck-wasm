@@ -6,6 +6,10 @@
 */
 export function new_interpreter(string: string): InterpreterContext;
 /**
+* @param {string} text
+*/
+export function generate_from_text(text: string): void;
+/**
 */
 export class InterpreterContext {
   free(): void;
@@ -25,6 +29,7 @@ export interface InitOutput {
   readonly interpretercontext_step: (a: number) => void;
   readonly interpretercontext_run: (a: number) => void;
   readonly new_interpreter: (a: number, b: number) => number;
+  readonly generate_from_text: (a: number, b: number) => void;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
   readonly __wbindgen_exn_store: (a: number) => void;

@@ -186,6 +186,15 @@ export function new_interpreter(string) {
     return InterpreterContext.__wrap(ret);
 }
 
+/**
+* @param {string} text
+*/
+export function generate_from_text(text) {
+    const ptr0 = passStringToWasm0(text, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    wasm.generate_from_text(ptr0, len0);
+}
+
 function isLikeNone(x) {
     return x === undefined || x === null;
 }

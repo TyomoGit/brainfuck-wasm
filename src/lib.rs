@@ -3,6 +3,7 @@ use web_sys::window;
 
 use wasm_bindgen::prelude::*;
 use brainfuck_interpreter::{interpreter::Interpreter, token};
+use brainfuck_from_text::generate;
 
 #[wasm_bindgen(js_namespace = window)]
 extern "C"{
@@ -104,4 +105,11 @@ fn append_to_output(string: &str) {
         .unwrap();
     let inner_content = element.inner_html();
     element.set_inner_html(&(inner_content + string));
+}
+
+#[wasm_bindgen]
+pub fn generate_from_text(text: &str) {
+    append_to_output(
+        &generate(text)
+    )
 }

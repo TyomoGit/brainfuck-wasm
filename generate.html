@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>BF Interpreter</title>
+</head>
+<body>
+    <h1>Brainfuck Generator written in Rust</h1>
+
+    <div id="codeField">
+        <h2>Text</h2>
+        <p>
+            <input type="button" value="Generate" id="runButton">
+        </p>
+        <textarea id="code"></textarea>
+    </div>
+
+    <div id="outputField">
+        <h2>Code</h2>
+        <div id="output"></div>
+    </div>
+
+    <a href="./index.html">BF Interpreter</a>
+
+    <script src="./generate.js" type="module"></script>
+</body>
+</html>

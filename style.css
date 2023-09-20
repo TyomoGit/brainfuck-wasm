@@ -29,3 +29,8 @@ h1 {
 #output {
     min-height: 40px;
 }
+
+textarea {
+    width: 90%;
+    height: 100px;
+}

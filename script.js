@@ -20,7 +20,7 @@ function main() {
 
         button.addEventListener("click", () => {
             if (button.innerText == "❎") {
-                code.innerText = code.innerHTML.slice(0, -1);
+                code.innerText = code.textContent.slice(0, -1);
             }else
             if (button.innerText == "↩️") {
                 code.innerHTML += "\n";

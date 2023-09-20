@@ -19,6 +19,9 @@ function main() {
         }
 
         button.addEventListener("click", () => {
+            if (button.innerText == "❎") {
+                code.innerText = code.innerHTML.slice(0, -1);
+            }else
             if (button.innerText == "↩️") {
                 code.innerHTML += "\n";
             } else {

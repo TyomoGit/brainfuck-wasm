@@ -34,5 +34,6 @@ function main() {
 function onButtonClick() {
     output.innerHTML = "";
     interpreter = wasm.new_interpreter(code.value);
-    interpreter.run();
+    // alert(interpreter);
+    interpreter.run()
 }

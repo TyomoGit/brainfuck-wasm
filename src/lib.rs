@@ -78,11 +78,19 @@ impl Write for WebWriter {
 #[wasm_bindgen]
 impl InterpreterContext {
     pub fn step(&mut self){
-        self.interpreter.step(&mut WebReader{}, &mut WebWriter::new());
+        self.interpreter.step(&mut WebReader{}, &mut WebWriter::new()).unwrap_or_else(|e| {
+            let writer = &mut WebWriter::new();
+            let output = format!("<strong><span style='color: red;'>Error: {}</span></strong>", e);
+            writer.write_all(output.as_bytes()).unwrap();
+        });
     }
 
     pub fn run(&mut self){
-        self.interpreter.run(&mut WebReader{}, &mut WebWriter::new());
+        self.interpreter.run(&mut WebReader{}, &mut WebWriter::new()).unwrap_or_else(|e| {
+            let writer = &mut WebWriter::new();
+            let output = format!("<strong><span style='color: red;'>Error: {}</span></strong>", e);
+            writer.write_all(output.as_bytes()).unwrap();
+        });
     }
 }
 
@@ -99,12 +107,16 @@ pub fn new_interpreter(string: &str) -> InterpreterContext {
 }
 
 fn append_to_output(string: &str) {
+    let string = string
+        .replace('\n', "<br>")
+        .replace(' ', "&nbsp;");
+    
     let element = window().unwrap()
         .document().unwrap()
         .get_element_by_id("output")
         .unwrap();
     let inner_content = element.inner_html();
-    element.set_inner_html(&(inner_content + string));
+    element.set_inner_html(&(inner_content + &string));
 }
 
 #[wasm_bindgen]

@@ -275,10 +275,10 @@ async function __wbg_load(module, imports) {
 function __wbg_get_imports() {
     const imports = {};
     imports.wbg = {};
-    imports.wbg.__wbg_log_0d5b35938fb79d34 = function(arg0, arg1) {
+    imports.wbg.__wbg_log_5963a5996a4334fa = function(arg0, arg1) {
         console.log(getStringFromWasm0(arg0, arg1));
     };
-    imports.wbg.__wbg_alert_a1f4fb25b3c351d3 = function(arg0, arg1) {
+    imports.wbg.__wbg_alert_970dc85aa865e10d = function(arg0, arg1) {
         window.alert(getStringFromWasm0(arg0, arg1));
     };
     imports.wbg.__wbindgen_object_drop_ref = function(arg0) {

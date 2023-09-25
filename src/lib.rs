@@ -110,7 +110,7 @@ fn append_to_output(string: &str) {
     let string = string
         .replace('\n', "<br>")
         .replace(' ', "&nbsp;");
-    
+
     let element = window().unwrap()
         .document().unwrap()
         .get_element_by_id("output")
